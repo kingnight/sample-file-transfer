@@ -1,24 +1,38 @@
-var app = {
-    initialize: function() {
-        this.bind();
-    },
-    bind: function() {
-        document.addEventListener('deviceready', this.deviceready, false);
-    },
-    deviceready: function() {
-        // This is an event handler function, which means the scope is the event.
-        // So, we must explicitly called `app.report()` instead of `this.report()`.
-        app.report('deviceready');
-    },
-    report: function(id) {
-        // Report the event in the console
-        console.log("Report: " + id);
+document.addEventListener("deviceready", onDeviceReady, false);
 
-        // Toggle the state from "pending" to "complete" for the reported ID.
-        // Accomplished by adding .hide to the pending element and removing
-        // .hide from the complete element.
-        document.querySelector('#' + id + ' .pending').className += ' hide';
-        var completeElem = document.querySelector('#' + id + ' .complete');
-        completeElem.className = completeElem.className.split('hide').join('');
-    }
-};
+function onDeviceReady() {
+    getFilesystem(
+        function(fileSystem) {
+            console.log("success");
+            transferFile(fileSystem.root.fullPath);
+        },
+        function() {
+            console.log("failed to get filesystem");
+        }
+    );
+}
+
+function getFilesystem(success, fail){
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
+}
+
+function transferFile(fileSystemPath){
+    var transfer = new FileTransfer(),
+    uri = encodeURI("http://icenium.com/assets/img/icenium-logo.png");
+    filePath = fileSystemPath+'/sample.png';
+    transfer.download(
+        uri,
+        filePath,
+        function(entry) {
+            var image = document.getElementById("result");
+            image.src=entry.fullPath;
+        },
+        function(error) {
+            console.log("download error source " + error.source);
+            console.log("download error target " + error.target);
+            console.log("upload error code" + error.code);
+        }
+    );
+}
+
