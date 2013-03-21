@@ -1,6 +1,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
+    navigator.splashscreen.hide();
     getFilesystem(
         function(fileSystem) {
             console.log("success");
