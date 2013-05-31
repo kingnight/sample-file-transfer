@@ -36,6 +36,8 @@
     <Folder Include="App_Resources\Android\drawable-ldpi">
       <Platform>Android</Platform>
     </Folder>
+    <Folder Include="styles" />
+    <Folder Include="styles\img" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
@@ -62,9 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="css\index.css" />
     <Content Include="js\index.js" />
-    <Content Include="img\logo.png" />
     <Content Include="cordova.ios.js">
       <Platform>iOS</Platform>
       <TargetName>cordova.js</TargetName>
@@ -73,6 +73,11 @@
       <Platform>Android</Platform>
       <TargetName>cordova.js</TargetName>
     </Content>
+    <Content Include="styles\img\background.png" />
+    <Content Include="styles\img\footer-background.png" />
+    <Content Include="styles\img\header.png" />
+    <Content Include="styles\img\logo.png" />
+    <Content Include="styles\main.css" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Telerik\ICE\Tools\Mobile\MobileTools.targets" />
 </Project>

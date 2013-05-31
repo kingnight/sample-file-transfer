@@ -4,12 +4,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <link href="styles/main.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <title>File Transfer</title>
     </head>
-    <body>
-        <img id="result"/>
-    </body>
+    
+	<body>
+		<header class="header">
+			<h1>File Transfer</h1>
+		</header>
+		<div class="content">
+			<button class="button big" id="download">Download</button>
+            <div id="result"></div>
+            <img id="downloadedImage"/>
+		</div>
+		<footer class="footer">
+			<div>Cordova API Samples</div>
+		</footer>
+	</body>
+    
 </html>
