@@ -5,7 +5,7 @@ function onDeviceReady() {
 	App = new downloadApp(),
 	fileName = "sample.png",
 	uri = encodeURI("http://www.icenium.com/assets/img/icenium-logo.png"),
-    folderName = "test";
+	folderName = "test";
     
 	navigator.splashscreen.hide();
 	App.run(uri, fileName, folderName);
@@ -45,8 +45,14 @@ downloadApp.prototype = {
 	},
     
 	getFilesystem:function (success, fail) {
-		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
+        //check whether we're in Simulator
+		if (device.uuid == "e0101010d38bde8e6740011221af335301010333" || device.uuid == "e0908060g38bde8e6740011221af335301010333") {
+			alert("Not Supported in Simulator.");
+		}
+		else {
+			window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
+		}
 	},
 
 	getFolder: function (fileSystem, folderName, success, fail) {
