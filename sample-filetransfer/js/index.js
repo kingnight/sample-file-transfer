@@ -70,6 +70,7 @@ downloadApp.prototype = {
 				document.getElementById("result").innerHTML = "File saved to: " + entry.fullPath;
 			},
 			function(error) {
+                document.getElementById("result").innerHTML = "An error has occurred: Code = " + error.code;
 				console.log("download error source " + error.source);
 				console.log("download error target " + error.target);
 				console.log("upload error code" + error.code);
