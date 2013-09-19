@@ -1,2 +1,1 @@
-sample-file-transfer
-====================
+This sample application demonstrates how to download and save an image on the device. For more information please refer to the [sample documentation](http://docs.icenium.com/sample-apps/sample-file-transfer).
