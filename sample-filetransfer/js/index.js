@@ -4,7 +4,7 @@ function onDeviceReady() {
 	var that = this,
 	App = new downloadApp(),
 	fileName = "sample.png",
-	uri = encodeURI("http://www.telerik.com/sfimages/default-source/productsimages/mobilecraft/platform.png"),
+	uri = encodeURI("http://www.telerik.com/sfimages/default-source/logos/app_builder.png"),
 	folderName = "test";
     
 	navigator.splashscreen.hide();
