@@ -4,7 +4,7 @@ function onDeviceReady() {
 	var that = this,
 	App = new downloadApp(),
 	fileName = "sample.png",
-	uri = encodeURI("http://www.icenium.com/assets/img/icenium-logo.png"),
+	uri = encodeURI("http://www.telerik.com/sfimages/default-source/productsimages/mobilecraft/platform.png"),
 	folderName = "test";
     
 	navigator.splashscreen.hide();
@@ -45,14 +45,8 @@ downloadApp.prototype = {
 	},
     
 	getFilesystem:function (success, fail) {
-        //check whether we're in Simulator
-		if (device.uuid == "e0101010d38bde8e6740011221af335301010333" || device.uuid == "e0908060g38bde8e6740011221af335301010333") {
-			alert("Not Supported in Simulator.");
-		}
-		else {
 			window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
-		}
 	},
 
 	getFolder: function (fileSystem, folderName, success, fail) {
