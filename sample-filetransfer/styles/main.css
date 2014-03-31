@@ -235,7 +235,8 @@ body
     height:60px;   
 }
 .button.dw {
-    width:220px;   
+    width:auto;   
+    height:auto;
 } 
 
 /* landscape */
@@ -257,6 +258,8 @@ body
     text-align:center;
 }
 #downloadedImage {
-    width:200px;
-    margin-top:10px;
+    margin: 10px auto;
+    max-width: 220px;
+    max-height: 220px;
+    display:none;
 }
