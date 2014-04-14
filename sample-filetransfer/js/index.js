@@ -61,6 +61,8 @@ downloadApp.prototype = {
 			function(entry) {
 				var image = document.getElementById("downloadedImage");
 				image.src = entry.fullPath;
+                image.style.display = "block"
+                image.display = entry.fullPath;
 				document.getElementById("result").innerHTML = "File saved to: " + entry.fullPath;
 			},
 			function(error) {
