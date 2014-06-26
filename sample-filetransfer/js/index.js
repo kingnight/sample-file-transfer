@@ -31,16 +31,14 @@ downloadApp.prototype = {
 						}, function() {
 							console.log("failed to get folder");
 						});
-					}
-					else {
-                        var filePath;
-                        var urlPath = fileSystem.root.toURL();
-                        if(parseFloat(device.cordova) <= 3.2){
-                            filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
-                        }
-                        else{
-                            filePath = urlPath + "\/" + fileName;
-                        }
+					} else {
+						var filePath;
+						var urlPath = fileSystem.root.toURL();
+						if (parseFloat(device.cordova) <= 3.2) {
+							filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
+						} else {
+							filePath = urlPath + "\/" + fileName;
+						}
 						that.transferFile(uri, filePath)
 					}
 				},
