@@ -64,11 +64,15 @@ downloadApp.prototype = {
 			uri,
 			filePath,
 			function(entry) {
+				var targetPath = entry.toURL();
+				if(device.platform == "Win32NT"){
+					targetPath = entry.fullPath;
+                }
 				var image = document.getElementById("downloadedImage");
-				image.src = entry.toURL();
+				image.src = targetPath;
                 image.style.display = "block"
-                image.display = entry.toURL();
-				document.getElementById("result").innerHTML = "File saved to: " + entry.toURL();
+                image.display = targetPath;
+				document.getElementById("result").innerHTML = "File saved to: " + targetPath;
 			},
 			function(error) {
                 document.getElementById("result").innerHTML = "An error has occurred: Code = " + error.code;
