@@ -48,5 +48,6 @@
     "ID_RESOLUTION_HD720P"
   ],
   "Author": "",
-  "Description": "sample-filetransfer"
+  "Description": "sample-filetransfer",
+  "Framework": "Cordova"
 }
