@@ -26,14 +26,19 @@ downloadApp.prototype = {
                     
 					if (device.platform === "Android") {
 						that.getFolder(fileSystem, folderName, function(folder) {
-							filePath = folder.fullPath + "\/" + fileName;
+							filePath = folder.toURL() + "\/" + fileName;
 							that.transferFile(uri, filePath)
 						}, function() {
 							console.log("failed to get folder");
 						});
-					}
-					else {
-						filePath = fileSystem.root.fullPath + "\/" + fileName;
+					} else {
+						var filePath;
+						var urlPath = fileSystem.root.toURL();
+						if (parseFloat(device.cordova) <= 3.2) {
+							filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
+						} else {
+							filePath = urlPath + "\/" + fileName;
+						}
 						that.transferFile(uri, filePath)
 					}
 				},
@@ -59,11 +64,15 @@ downloadApp.prototype = {
 			uri,
 			filePath,
 			function(entry) {
+				var targetPath = entry.toURL();
+				if(device.platform == "Win32NT"){
+					targetPath = entry.fullPath;
+                }
 				var image = document.getElementById("downloadedImage");
-				image.src = entry.fullPath;
+				image.src = targetPath;
                 image.style.display = "block"
-                image.display = entry.fullPath;
-				document.getElementById("result").innerHTML = "File saved to: " + entry.fullPath;
+                image.display = targetPath;
+				document.getElementById("result").innerHTML = "File saved to: " + targetPath;
 			},
 			function(error) {
                 document.getElementById("result").innerHTML = "An error has occurred: Code = " + error.code;
