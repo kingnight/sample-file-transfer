@@ -2,10 +2,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 	var that = this,
-	App = new downloadApp(),
-	fileName = "sample.png",
-	uri = encodeURI("http://www.telerik.com/sfimages/default-source/logos/app_builder.png"),
-	folderName = "test";
+		App = new downloadApp(),
+		fileName = "sample.png",
+		uri = encodeURI("http://www.telerik.com/sfimages/default-source/logos/app_builder.png"),
+		folderName = "test";
     
 	navigator.splashscreen.hide();
 	App.run(uri, fileName, folderName);
@@ -17,7 +17,7 @@ var downloadApp = function() {
 downloadApp.prototype = {
 	run: function(uri, fileName, folderName) {
 		var that = this,
-		filePath = "";
+			filePath = "";
         
 		document.getElementById("download").addEventListener("click", function() {
 			that.getFilesystem(
@@ -34,6 +34,9 @@ downloadApp.prototype = {
 					} else {
 						var filePath;
 						var urlPath = fileSystem.root.toURL();
+						if (device.platform == "Win32NT") {
+							urlPath = fileSystem.root.fullPath;
+						}
 						if (parseFloat(device.cordova) <= 3.2) {
 							filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
 						} else {
@@ -50,8 +53,8 @@ downloadApp.prototype = {
 	},
     
 	getFilesystem:function (success, fail) {
-			window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
+		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, success, fail);
 	},
 
 	getFolder: function (fileSystem, folderName, success, fail) {
@@ -65,17 +68,17 @@ downloadApp.prototype = {
 			filePath,
 			function(entry) {
 				var targetPath = entry.toURL();
-				if(device.platform == "Win32NT"){
+				if (device.platform == "Win32NT") {
 					targetPath = entry.fullPath;
-                }
+				}
 				var image = document.getElementById("downloadedImage");
 				image.src = targetPath;
-                image.style.display = "block"
-                image.display = targetPath;
+				image.style.display = "block";
+				image.display = targetPath;
 				document.getElementById("result").innerHTML = "File saved to: " + targetPath;
 			},
 			function(error) {
-                document.getElementById("result").innerHTML = "An error has occurred: Code = " + error.code;
+				document.getElementById("result").innerHTML = "An error has occurred: Code = " + error.code;
 				console.log("download error source " + error.source);
 				console.log("download error target " + error.target);
 				console.log("upload error code" + error.code);
