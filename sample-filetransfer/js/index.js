@@ -31,8 +31,7 @@ downloadApp.prototype = {
 						}, function() {
 							console.log("failed to get folder");
 						});
-					}
-					else {
+					} else {
 						var filePath;
 						var urlPath = fileSystem.root.toURL();
 						if (device.platform == "Win32NT") {
@@ -40,8 +39,7 @@ downloadApp.prototype = {
 						}
 						if (parseFloat(device.cordova) <= 3.2) {
 							filePath = urlPath.substring(urlPath.indexOf("/var")) + "\/" + fileName;
-						}
-						else {
+						} else {
 							filePath = urlPath + "\/" + fileName;
 						}
 						that.transferFile(uri, filePath)
