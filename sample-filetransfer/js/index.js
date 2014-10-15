@@ -104,10 +104,9 @@ downloadApp.prototype = {
 			options.fileKey = "file";
 			options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
 			
-			if(cordova.platformId == "android")
-			{
+			if (cordova.platformId == "android") {
 				options.fileName += ".jpg" 
-            }
+			}
 			
 			options.mimeType = "image/jpeg";
 			options.params = {}; // if we need to send parameters to the server request 
