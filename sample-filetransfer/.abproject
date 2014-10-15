@@ -5,20 +5,20 @@
   "ProjectName": "sample-filetransfer",
   "IsRunnable": "true",
   "AndroidPermissions": [
-    "android.permission.CAMERA",
-    "android.permission.VIBRATE",
     "android.permission.ACCESS_COARSE_LOCATION",
     "android.permission.ACCESS_FINE_LOCATION",
     "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
-    "android.permission.READ_PHONE_STATE",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.CAMERA",
     "android.permission.INTERNET",
-    "android.permission.RECEIVE_SMS",
-    "android.permission.RECORD_AUDIO",
     "android.permission.MODIFY_AUDIO_SETTINGS",
     "android.permission.READ_CONTACTS",
+    "android.permission.READ_PHONE_STATE",
+    "android.permission.RECEIVE_SMS",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.VIBRATE",
     "android.permission.WRITE_CONTACTS",
-    "android.permission.WRITE_EXTERNAL_STORAGE",
-    "android.permission.ACCESS_NETWORK_STATE"
+    "android.permission.WRITE_EXTERNAL_STORAGE"
   ],
   "DeviceOrientations": [
     "Portrait",
@@ -36,9 +36,11 @@
   "iOSBackgroundMode": [],
   "FrameworkVersion": "3.5.0",
   "CorePlugins": [
+    "org.apache.cordova.camera",
     "org.apache.cordova.device",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
+    "org.apache.cordova.inappbrowser",
     "org.apache.cordova.splashscreen"
   ],
   "DisplayName": "",
@@ -49,5 +51,16 @@
   ],
   "Author": "",
   "Description": "sample-filetransfer",
-  "Framework": "Cordova"
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8ProductID": "{8e41db67-fdfa-4ee8-8bf8-62100c2dd8b7}",
+  "WP8PublisherID": "{57098cf3-14c0-476e-9971-ddcd04541fc3}",
+  "WP8Publisher": "",
+  "WP8Capabilities": [],
+  "WP8Requirements": [],
+  "CordovaPluginVariables": {
+    "com.telerik.mobiletesting": {
+      "IOS_APP_URL": ""
+    }
+  }
 }

@@ -263,3 +263,6 @@ body
     max-height: 220px;
     display:none;
 }
+.left{
+	text-align: left;
+}
