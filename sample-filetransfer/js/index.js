@@ -50,6 +50,8 @@ downloadApp.prototype = {
 				}
 				);
 		});
+		
+		document.getElementById("upload").addEventListener("click", that.uploadFile);
 	},
     
 	getFilesystem:function (success, fail) {
@@ -84,5 +86,63 @@ downloadApp.prototype = {
 				console.log("upload error code" + error.code);
 			}
 			);
+	},
+	
+	uploadFile: function() {
+		navigator.camera.getPicture(
+			uploadPhoto,
+			function(message) {
+				alert('Failed to get a picture');
+			}, {
+				quality         : 50,
+				destinationType : navigator.camera.DestinationType.FILE_URI,
+				sourceType      : navigator.camera.PictureSourceType.PHOTOLIBRARY
+			});
+		
+		function uploadPhoto(fileURI) {
+			var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+			
+			if (cordova.platformId == "android") {
+				options.fileName += ".jpg" 
+			}
+			
+			options.mimeType = "image/jpeg";
+			options.params = {}; // if we need to send parameters to the server request 
+			options.headers = {
+				Connection: "Close"
+			};
+			options.chunkedMode = false;
+            
+			var ft = new FileTransfer();
+			ft.upload(
+				fileURI,
+				encodeURI("http://www.filedropper.com"),
+				onFileUploadSuccess,
+				onFileTransferFail,
+				options);
+		
+			function onFileUploadSuccess (result) {
+				console.log("FileTransfer.upload");
+				console.log("Code = " + result.responseCode);
+				console.log("Response = " + result.response);
+				console.log("Sent = " + result.bytesSent);
+				console.log("Link to uploaded file: http://www.filedropper.com" + result.response);
+				var response = result.response;
+				var destination = "http://www.filedropper.com/" + response.substr(response.lastIndexOf('=') + 1);
+				document.getElementById("result").innerHTML = "File uploaded to: " + 
+															  destination + 
+															  "</br><button onclick=\"window.open('" + destination + "', '_blank', 'location=yes')\">Open Location</button>";
+				document.getElementById("downloadedImage").style.display="none";
+			}
+        
+			function onFileTransferFail (error) {
+				console.log("FileTransfer Error:");
+				console.log("Code: " + error.code);
+				console.log("Source: " + error.source);
+				console.log("Target: " + error.target);
+			}
+		}
 	}
 }
