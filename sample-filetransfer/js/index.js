@@ -4,10 +4,11 @@ function onDeviceReady() {
 	var that = this,
 		App = new downloadApp(),
 		fileName = "sample.png",
-		uri = encodeURI("http://www.telerik.com/sfimages/default-source/logos/app_builder.png"),
+		//uri = encodeURI("http://www.telerik.com/sfimages/default-source/logos/app_builder.png"),
+		uri = encodeURI("http://mediafiles.qiniudn.com/1.png"),
 		folderName = "test";
     
-	navigator.splashscreen.hide();
+	//navigator.splashscreen.hide();
 	App.run(uri, fileName, folderName);
 }
 
